@@ -19,14 +19,14 @@ class PokemonSeeder extends Seeder
         Schema::withoutForeignKeyConstraints(function () { // If the Pokemon database has some foreignIds, it will disable them and make it truncate properly.
             Pokemon::truncate();
         });
-        
+
         $sexs = [
             'M',
             'F',
             'U',
         ];
 
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 10; $i++) {
             //
             $randomSexsIndex = rand(0, count($sexs)-1);
             $randomGeneration = Generation::inRandomOrder()->first();
@@ -42,7 +42,7 @@ class PokemonSeeder extends Seeder
 
             $typeIds = [];
 
-            for ($k=0; $k < Type::count(); $k++) { // It will be useful to generate random associations ( and select random types, never equals ).
+            for ($k=0; $k < 2; $k++) { // It will be useful to generate random associations ( and select random types, never equals ).
                 $randomType = Type::inRandomOrder()->first();
                 if (!in_array($randomType->id, $typeIds)) {
                     $typeIds[] = $randomType->id;
